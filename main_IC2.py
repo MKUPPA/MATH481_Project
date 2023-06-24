@@ -1,3 +1,11 @@
+"""
+# Author: Mridula Kuppa
+
+# Description: Main file to solve heat equation on unit sphere
+with IC2: Hot upper hemisphere (u=1), cold lower hemisphere (u=0)
+
+"""
+
 import sys
 import numpy as np
 import utils as ul
@@ -25,22 +33,19 @@ Xt,Yt,Zt = ul.chart2sph(X, Y, hemi='top')
 Xb,Yb,Zb = ul.chart2sph(X, Y, hemi='bottom')
 
 # %% Get initial solution on sphere
-# sol_lst = ul.get_init_sol(Xt,Yt,Zt, case='hot_cold')
-# init_sol_t = sol_lst[0]
+sol_lst = ul.get_init_sol(Xt,Yt,Zt, case='hot_cold')
+init_sol_t = sol_lst[0]
 
-# sol_lst = ul.get_init_sol(Xb,Yb,Zb, case='hot_cold')
-# init_sol_b = sol_lst[0]
+sol_lst = ul.get_init_sol(Xb,Yb,Zb, case='hot_cold')
+init_sol_b = sol_lst[0]
 
-# %% Starting from t=5
-init_sol_t = np.loadtxt('sol_t_10s.txt')
-init_sol_b = np.loadtxt('sol_b_10s.txt')
+#-------------------------------------------------------------------------------------------------------
 
-
-# %% Initial solution on 2D grid
+# %% Plot Initial solution on 2D grid
 #pu.plot_sol(X, Y, init_sol_t, cbar=True, savename='init_top.png', showplot=True)
 #pu.plot_sol(X, Y, init_sol_b, cbar=True, savename='init_bot.png', showplot=True)
 
-# %% Initial sol on sphere
+# %% Plot Initial sol on sphere
 # Nc = 101
 # Xc, Yc, dxc, dyc = ul.get_cart_grid(Nc)
 
@@ -61,6 +66,7 @@ init_sol_b = np.loadtxt('sol_b_10s.txt')
 
 # pu.plot_sol_sph(Xtot, Ytot, Ztot, init_tot, cbar = True, savename='plots/IC_HotCold/sphere_IC2.png', showplot=True)
 
+#----------------------------------------------------------------------------------------------------------------------
 
 # %% Extrapolate IC to ghost cells
 ghost_sol = ul.extrapolate_ghost(init_sol_t, dx, dy, int_dict, ghost_dict)
@@ -149,40 +155,40 @@ for i in range(nt):
     # plot
         
     if i == 500: 
-        np.savetxt('sol_t_15s.txt', sol_t_np1)
-        savename = 'plots/num_t_15s.png'
+        np.savetxt('ic2_sol_t_5s.txt', sol_t_np1)
+        savename = 'plots/ic2_num_t_5s.png'
         pu.plot_sol(X, Y, sol_t_int, cbar=True, savename=savename, showplot=False)
         
-        np.savetxt('sol_b_15s.txt', sol_b_np1)
-        savename = 'plots/num_b_15s.png'
+        np.savetxt('ic2_sol_b_5s.txt', sol_b_np1)
+        savename = 'plots/ic2_num_b_5s.png'
         pu.plot_sol(X, Y, sol_b_int, cbar=True, savename=savename, showplot=False)
         
         
     if i == 1000: 
-        np.savetxt('sol_t_20s.txt', sol_t_np1)
-        savename = 'plots/num_t_20s.png'
+        np.savetxt('ic2_sol_t_10s.txt', sol_t_np1)
+        savename = 'plots/ic2_num_t_10s.png'
         pu.plot_sol(X, Y, sol_t_np1, cbar=True, savename=savename, showplot=False)
 
-        np.savetxt('sol_b_20s.txt', sol_b_np1)
-        savename = 'plots/num_b_20s.png'
+        np.savetxt('ic2_sol_b_10s.txt', sol_b_np1)
+        savename = 'plots/ic2_num_b_10s.png'
         pu.plot_sol(X, Y, sol_b_np1, cbar=True, savename=savename, showplot=False)
         
     if i == 1500: 
-        np.savetxt('sol_t_25s.txt', sol_t_np1)
-        savename = 'plots/num_t_25s.png'
+        np.savetxt('ic2_sol_t_15s.txt', sol_t_np1)
+        savename = 'plots/ic2_num_t_15s.png'
         pu.plot_sol(X, Y, sol_t_np1, cbar=True, savename=savename, showplot=False)
 
-        np.savetxt('sol_b_25s.txt', sol_b_np1)
-        savename = 'plots/num_b_25s.png'
+        np.savetxt('ic2_sol_b_15s.txt', sol_b_np1)
+        savename = 'plots/ic2_num_b_15s.png'
         pu.plot_sol(X, Y, sol_b_np1, cbar=True, savename=savename, showplot=False)
         
     if i == 1999: 
-        np.savetxt('sol_t_30s.txt', sol_t_np1)
-        savename = 'plots/num_t_30s.png'
+        np.savetxt('ic2_sol_t_20s.txt', sol_t_np1)
+        savename = 'plots/ic2_num_t_20s.png'
         pu.plot_sol(X, Y, sol_t_np1, cbar=True, savename=savename, showplot=False)
 
-        np.savetxt('sol_b_30s.txt', sol_b_np1)
-        savename = 'plots/num_b_30s.png'
+        np.savetxt('ic2_sol_b_20s.txt', sol_b_np1)
+        savename = 'plots/ic2_sol_b_20s.png'
         pu.plot_sol(X, Y, sol_b_np1, cbar=True, savename=savename, showplot=False)
         
 

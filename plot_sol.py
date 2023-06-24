@@ -1,5 +1,7 @@
 """
-code to plot saved solutions
+Author: Mridula Kuppa
+
+Description: Code to plot saved solutions
 
 """
 import numpy as np

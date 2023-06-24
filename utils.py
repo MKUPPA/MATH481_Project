@@ -1,3 +1,11 @@
+"""
+Author: Mridula Kuppa
+
+Description: Utilities to solve heat equation on unit sphere
+
+"""
+
+
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -39,7 +47,6 @@ def get_interior_dict(X, Y):
     return point_dict
 
 # Extract ghost cells
-
 def get_ghost(X, Y, dx, dy):
     
     
@@ -111,7 +118,6 @@ def get_ghost(X, Y, dx, dy):
     return ghost_dict
 
 # Global dictionary
-
 def get_global_dict(int_dict, ghost_dict):
     
     int_points = int_dict.values()
@@ -415,6 +421,10 @@ def sph2chart(x,y,z):
 
 
 def chart2sph(x1, x2, hemi):
+
+    """
+    Projection from coordinate chart to sphere
+    """
     
     if hemi == 'top':
     
@@ -443,6 +453,10 @@ def metric(x1,x2):
 
     
 def inv_metric(x1, x2):
+
+    """
+    Returns components and determinant of inverse metric tensor
+    """
     
     epsilon = 1e-8
     
@@ -500,24 +514,17 @@ def get_init_sol(X,Y,Z,case='ic_ana'):
          # %% --------------- IC with top 1, bottom 0 ----------------
         init_sol = np.full_like(X, 0)
         
-        #init_sol[:] = 1
-        
         for i,val in enumerate(Z):
             if val >= 0:
                 init_sol[i] = 1
             else:
                 init_sol[i] = 0
-        #n = X.shape[0]
-        
-        #init_sol[0:int(n/2)] = 1
-        #init_sol[int(n/2):] = 0
         
         sol_lst = [init_sol]
     
     return sol_lst
 
 # generate grid on XY plane
-
 def get_cart_grid(N):
     
     """
@@ -550,7 +557,6 @@ def get_cart_grid(N):
 
 
 # Generate finite differences
-
 def get_fd(X, Y, global_dict, global_sol, dx, dy):
     
     """

@@ -1,10 +1,15 @@
+"""
+# Author: Mridula Kuppa
+
+# Description: Main file to solve heat equation on unit sphere
+with IC1: Soccer-ball function
+
+"""
+
 import sys
 import numpy as np
 import utils as ul
 import plot_utils as pu
-
-# # %% Circle contour
-# theta = np.linspace(0, 2*np.pi, 100)
 
 # %% Creat X,Y grid
 N = 51
@@ -29,9 +34,7 @@ X,Y,Z = ul.chart2sph(X, Y, hemi='top')
 sol_lst = ul.get_init_sol(X,Y,Z)
 init_sol = sol_lst[0]
 
-print(len(X))
-sys.exit()
-
+#------------------------------------------------------------------------------
 # %% Plots
 
 # # 2D grid with ghost cells
@@ -70,7 +73,7 @@ sys.exit()
 
 # pu.plot_sol_sph(Xtot, Ytot, Ztot, init_tot, cbar = True, savename='plots/IC_analytical/sphere_IC1.png', showplot=True)
 
-#-----------------------------------------
+#-------------------------------------------------------------------------------------------
 
 # %% Extrapolate IC to ghost cells
 ghost_sol = ul.extrapolate_ghost(init_sol, dx, dy, int_dict, ghost_dict)
@@ -117,22 +120,22 @@ for i in range(nt):
     # plot
 
     if i == 124:
-        np.savetxt('sol0p25.txt', sol_np1)
+        np.savetxt('ic1_sol0p25.txt', sol_np1)
         savename = 'plots/num0p25.png'
         pu.plot_sol(X, Y, sol_np1, cbar=False, savename=savename, showplot=True)
         
     if i == 249:
-        np.savetxt('sol0p50.txt', sol_np1)
+        np.savetxt('ic1_sol0p50.txt', sol_np1)
         savename = 'plots/num0p50.png'
         pu.plot_sol(X, Y, sol_np1, cbar=False, savename=savename, showplot=False)
         
     if i == 374:
-        np.savetxt('sol0p75.txt', sol_np1)
+        np.savetxt('ic1_sol0p75.txt', sol_np1)
         savename = 'plots/num0p75.png'
         pu.plot_sol(X, Y, sol_np1, cbar=False, savename=savename, showplot=False)
         
     if i == 499:
-        np.savetxt('sol1p00.txt', sol_np1)
+        np.savetxt('ic1_sol1p00.txt', sol_np1)
         savename = 'plots/num1p00.png'
         pu.plot_sol(X, Y, sol_np1, cbar=False, savename=savename, showplot=False)
 
